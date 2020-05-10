@@ -2,26 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hello, Spring Boot!</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<!-- Bootstrap Javascript(jQuery含む) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
 
 <div th:replace="common/header :: common_header"></div>
 
 <form th:action="@{/detail}" th:object="${employeeForm.employee}" method="post">
-	<p>Name (Optional): <input type="text" th:field="*{name}" />
+	<p style="text-align: center;">Name (Optional): <input type="text" th:field="*{name}" style="text-align: center;" />
 		<em th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</em>
 	</p>
-	<p><input type="submit" value="Search" /></p>
+	<p style="text-align: center;"><input type="submit" value="Search" class="btn btn-primary"/></p>
 
 </form>
-
-
-<div th:object="${employeeListForm}">
-	<table>
-		<caption>
-			<strong>従業員リスト</strong>
-		</caption>
+<br>
+<div th:object="${employeeListForm}" class="container">
+	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
 				<th>ID</th>
