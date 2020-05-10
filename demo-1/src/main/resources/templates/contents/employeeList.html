@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/htm14/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Hello, Spring Boot!</title>
+</head>
+<body>
+
+<div th:replace="common/header :: common_header"></div>
+
+<form th:action="@{/detail}" th:object="${employeeForm.employee}" method="post">
+	<p>Name (Optional): <input type="text" th:field="*{name}" />
+		<em th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</em>
+	</p>
+	<p><input type="submit" value="Search" /></p>
+
+</form>
+
+
+<div th:object="${employeeListForm}">
+	<table>
+		<caption>
+			<strong>従業員リスト</strong>
+		</caption>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>NAME</th>
+				<th>EMAIL</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="emp : *{employees}">
+				<td th:text="${emp.id}"></td>
+				<td th:text="${emp.name}"></td>
+				<td th:text="${emp.email}"></td>
+		</tbody>
+	</table>
+
+</div>
+
+
+<div th:replace="common/footer :: common_footer"></div>
+
+</body>
+</html>
