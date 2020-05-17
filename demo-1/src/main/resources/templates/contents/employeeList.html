@@ -16,8 +16,8 @@
 
 <div th:replace="common/header :: common_header"></div>
 
-<form th:action="@{/detail}" th:object="${employeeForm.employee}" method="post">
-	<p style="text-align: center;">Name (Optional): <input type="text" th:field="*{name}" style="text-align: center;" />
+<form  class="form-horizontal" th:action="@{/detail}" th:object="${employeeForm.employee}" method="post">
+	<p style="text-align: center;">Name: <input type="text" class="form-control" th:field="*{name}" style="text-align: center;" />
 		<em th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</em>
 	</p>
 	<p style="text-align: center;"><input type="submit" value="Search" class="btn btn-primary"/></p>
@@ -37,7 +37,7 @@
 			<tr th:each="emp : *{employees}">
 				<td th:text="${emp.id}"></td>
 				<td th:text="${emp.name}"></td>
-				<td th:text="${emp.email}"></td>
+				<td th:text="${emp.mailAddress}"></td>
 		</tbody>
 	</table>
 
