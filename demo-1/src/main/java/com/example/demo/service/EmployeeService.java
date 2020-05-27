@@ -7,4 +7,5 @@ import com.example.demo.domain.EmployeeBean;
 
 public interface EmployeeService {
 	List<EmployeeBean> search(ConditionBean con);
+	List<EmployeeBean> search2(ConditionBean con);
 }

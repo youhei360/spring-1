@@ -37,6 +37,24 @@ public class EmployeeController {
 		return "contents/employee";
 	}
 
+	@RequestMapping("/")
+	public String detail(Model model) {
+
+		EmployeeForm form = new EmployeeForm();
+		EmployeeBean bean = new EmployeeBean();
+		form.setEmployee(bean);
+
+		ConditionBean con = new ConditionBean();
+		List<EmployeeBean> result = service.search(con);
+		EmployeeListForm listForm = new EmployeeListForm();
+		listForm.setEmployees(result);
+
+		model.addAttribute("title", title);
+		model.addAttribute("employeeForm", form);
+		model.addAttribute("employeeListForm", listForm);
+
+		return "contents/employeeList";
+	}
 
 	@RequestMapping("/detail")
 	public String detail(@ModelAttribute("employeeForm") EmployeeForm form, Model model) {
@@ -52,4 +70,20 @@ public class EmployeeController {
 
 		return "contents/employeeList";
 	}
+
+	@RequestMapping("/detail2")
+	public String detail2(@ModelAttribute("employeeForm") EmployeeForm form, Model model) {
+
+		ConditionBean con = new ConditionBean();
+		con.setName(form.getEmployee().getName());
+		List<EmployeeBean> result = service.search2(con);
+
+		EmployeeListForm listForm = new EmployeeListForm();
+		listForm.setEmployees(result);
+
+		model.addAttribute("employeeListForm", listForm);
+
+		return "contents/employeeList";
+	}
+
 }

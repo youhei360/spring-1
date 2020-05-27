@@ -8,7 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.bean.ConditionBean;
 import com.example.demo.domain.EmployeeBean;
-import com.example.demo.mapper.EmployeeMapper;
+import com.example.demo.mapper1.EmployeeMapper1;
+import com.example.demo.mapper2.EmployeeMapper2;
 import com.example.demo.service.EmployeeService;
 
 
@@ -16,12 +17,23 @@ import com.example.demo.service.EmployeeService;
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
-	private EmployeeMapper mapper;
+	private EmployeeMapper1 mapper1;
+
+	@Autowired
+	private EmployeeMapper2 mapper2;
 
 	@Transactional
 	public List<EmployeeBean> search(ConditionBean con) {
 
-		List<EmployeeBean> list = mapper.selectAll();
+		List<EmployeeBean> list = mapper1.selectAll();
+		return list;
+
+	}
+
+	@Transactional(transactionManager = "txManager2")
+	public List<EmployeeBean> search2(ConditionBean con) {
+
+		List<EmployeeBean> list = mapper2.selectAll();
 		return list;
 
 	}
